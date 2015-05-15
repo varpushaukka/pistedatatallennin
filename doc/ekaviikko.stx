@@ -1,4 +1,4 @@
-char_coding: utf-8
+char_coding: utf8
 
 ! Pistedatatallennin
 
@@ -16,4 +16,4 @@ Jos ehdin ja osaan, toteutan sovellukseen karttanäkymän, josta käyttäjä nä
 
 !! Käyttötapaukset
 
-w_img(käyttötapauskaavio.png)
+w_img(käyttötapauskaavio)
