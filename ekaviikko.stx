@@ -1,0 +1,15 @@
+w_coding: utf-8
+
+! Pistedatatallennin
+
+!! Johdanto
+
+Järjestelmään on tarkoitus tallettaa metadataa käyttäjän vierailemista paikoista. Talletettava tieto voi olla mitä vain, minkä käyttäjä arvioi itselleen, tai muille hyödylliseksi. 
+
+Pistedatatallennin on selaimen avulla käytettävä sovellus, johon käyttäjä syöttää tietoa siitä mitä mielenkiintoista kyseisessä paikassa on. Sijainnin haun hoitaa selain ja se talletetaan tietokantaan sellaisenaan. Pisteillä voi olla jonkinlainen säde, jotta jotkin paikat tallentuisivat "samoina" paikkoina.
+
+Pistedatatallentimella käyttäjä voi luoda eri tyyppisiä tietoja, ja sitten esim. listata niitä. Esimerkiksi käyttäjä voi tallettaa tiedon siitä missä on hyviä ravintoloita tai missä on vaarallisia risteyksiä.
+
+Sovellus toteutetaan python-ohjelmointikielellä ja Bottle-serverillä, joka pyörii Osuuskunta Sangen Oiva-palvelimella. Tietokantatalletukset tehdään Oivan PostgreSQL-tietokantaan.
+
+Jos ehdin ja osaan, toteutan sovellukseen karttanäkymän, josta käyttäjä näkee intuitiivisesti tekemänsä tietokantatalletukset. Tämä todennäköisesti vaatii jotain javascript-säätöä.
