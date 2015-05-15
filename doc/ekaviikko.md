@@ -1,8 +1,6 @@
-char_coding: utf8
+# Pistedatatallennin
 
-! Pistedatatallennin
-
-!! Johdanto
+## Johdanto
 
 Järjestelmään on tarkoitus tallettaa metadataa käyttäjän vierailemista paikoista. Talletettava tieto voi olla mitä vain, minkä käyttäjä arvioi itselleen tai muille hyödylliseksi. 
 
@@ -14,6 +12,6 @@ Sovellus toteutetaan python-ohjelmointikielellä ja Flask-mikroframeworkilla, jo
 
 Jos ehdin ja osaan, toteutan sovellukseen karttanäkymän, josta käyttäjä näkee intuitiivisesti tekemänsä tietokantatalletukset. Tämä todennäköisesti vaatii jotain javascript-säätöä.
 
-!! Käyttötapaukset
+## Käyttötapaukset
 
-w_img(käyttötapauskaavio)
+![käyttötapauskaavio](käyttötapauskaavio.png)
