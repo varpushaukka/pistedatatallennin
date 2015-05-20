@@ -15,3 +15,44 @@ Jos ehdin ja osaan, toteutan sovellukseen karttanäkymän, josta käyttäjä nä
 ## Käyttötapaukset
 
 ![käyttötapauskaavio](käyttötapauskaavio.png)
+
+### Käyttäjäryhmät
+
+Käyttäjä
+- kuka tahansa sovellukseen rekisteröityvä henkilö. Tavallisen käyttäjän rooli
+
+Ylläpitäjä
+- käytännössä käyttäjä, mutta jolta löytyy ylläpitäjän rooli ja oikeus poistaa paikkatietoja
+
+### Käyttötapauskuvaukset
+
+#### Käyttäjän käyttötapaukset
+
+Uuden käyttäjän luominen
+- kuka tahansa voi luoda uuden käyttäjän
+
+Omien tietojen muokkaus
+- nimi
+
+Tiedon syöttäminen
+- rekisteröityneet ja kirjautuneet käyttäjät voivat luoda uuden paikkatiedon. Selain hakee lomakkeeseen sijainnin ja käyttäjä täyttää varsinaisen tiedon ja lisää tagit.
+
+Tiedon listaaminen
+- käyttäjä voi suodattaa tietoa tagien perusteella. Tageja voi valita useita kerrallaan tai ei yhtään (jolloin käyttäjälle listataan kaikki paikkatiedot)
+
+Tiedon poistaminen
+- käyttäjä voi poistaa sellaisen paikkatiedon, jonka omistaja hän on
+
+Tiedon yhdistäminen
+- käyttäjä voi yhdistää kaksi paikkatietoa, jolloin luodaan kolmas paikkatieto, joka laskee näiden kahden pisteen puolivälin koordinaattien perustella ja se asetetaan uuden paikkatiedon sijainnksi. Kumpaakaan näistä paikkatiedoista ei poisteta, mutta niitä ei myöskään näytetä listauksissa.
+
+#### Ylläpitäjän käyttötapaukset
+
+Käyttäjän poistaminen
+- käyttäjiä kannattaa poistaa vain jos ne ovat häiriköiviä, esim spämmereitä.
+
+
+
+
+
+
