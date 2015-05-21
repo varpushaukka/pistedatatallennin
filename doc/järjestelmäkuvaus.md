@@ -54,6 +54,8 @@ Käyttäjän poistaminen
 ## Järjestelmän tietosisältö
 ![tietosisältökaavio] (tietosisältökaavio.png)
 
+### paikka
+
                                Table "public.paikka"
             Column    |  Type   |                      Modifiers
          --------------+---------+-----------------------------------------------------
@@ -65,6 +67,8 @@ Käyttäjän poistaminen
 
 postgreSQL tarjoaa pistedatatyypin, jota käytetään koordinaattien tallettamisessa. Omistaja on integer, joka viittaa käyttäjän id:hen. Yhdpaikkaan on mergeämistä varten. Jos yhdpaikkaan ei ole null, kyseistä paikkaa ei näytetä listauksissa.
 
+### kuvaus
+
                                   Table "public.kuvaus"
           Column |           Type           |                      Modifiers                      
          --------+--------------------------+-----------------------------------------------------
@@ -74,6 +78,8 @@ postgreSQL tarjoaa pistedatatyypin, jota käytetään koordinaattien tallettamis
          luotu  | timestamp with time zone | default now()
 
 Paikka viittaa paikan id:hen. Kuvaus on mitä tahansa paikkaan liittyvää kuvailevaa tekstiä.
+
+### käyttäjä
 
                                    Table "public.kayttaja"
          Column  |           Type           |                       Modifiers                       
@@ -88,6 +94,8 @@ Paikka viittaa paikan id:hen. Kuvaus on mitä tahansa paikkaan liittyvää kuvai
 
 Nimi on käyttäjän nimi. Tunnus on käyttäjän käyttäjätunnus. Rooli on enum, joka voi olla joko "tavis" tai "admin".
 
+### tagi
+
                          Table "public.tagi"
           Column |  Type   |                     Modifiers                     
          --------+---------+---------------------------------------------------
@@ -96,6 +104,8 @@ Nimi on käyttäjän nimi. Tunnus on käyttäjän käyttäjätunnus. Rooli on en
           lang   | text    | 
 
 tagi on yleensä lyhyt, yhden sanan mittainen kuvaileva sana, esimerkiksi "ravintola" tai "uimapaikka"
+
+### paikkatagi
 
         Table "public.paikkatagi"
           Column |  Type   | Modifiers 
