@@ -51,6 +51,10 @@ Tiedon yhdistäminen
 Käyttäjän poistaminen
 - käyttäjiä kannattaa poistaa vain jos ne ovat häiriköiviä, esim spämmereitä.
 
+## Relaatiotietokantakaavio
+
+![tietokantakaavio] (tietokantakaavio.png)
+
 
 
 
