@@ -55,13 +55,13 @@ Käyttäjän poistaminen
 ![tietosisältökaavio] (tietosisältökaavio.png)
 
                                Table "public.paikka"
-       Column    |  Type   |                      Modifiers
-    --------------+---------+-----------------------------------------------------
-    id           | integer | not null default nextval('paikka_id_seq'::regclass)
-    koordinaatti | point   | not null
-    omistaja     | integer | 
-    luotu        | date    | default now()
-    yhdpaikkaan  | integer | 
+            Column    |  Type   |                      Modifiers
+         --------------+---------+-----------------------------------------------------
+         id           | integer | not null default nextval('paikka_id_seq'::regclass)
+         koordinaatti | point   | not null
+         omistaja     | integer | 
+         luotu        | date    | default now()
+         yhdpaikkaan  | integer | 
 
 
 
