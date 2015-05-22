@@ -5,7 +5,7 @@ from bottle import route, run
 #def server_static(index.html):
 #    return static_file(index.html, root='/home/varpushaukka/yliopisto/tsoha/pistedatatallennin/src/sivut')
 
-@route('/static/<filepath:/sivut/>')
+@route('/static/<filepath:path>')
 def server_static(filepath):
     return static_file(filepath, root='/sivut/')
 
