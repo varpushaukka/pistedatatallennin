@@ -1,6 +1,6 @@
 from bottle import route, run
 
-@route('/static/<filepath:path>')
+@route('/sivut/<filepath:path>')
 def server_static(filepath):
     f = static_file(filepath, root='/home/varpushaukka/proj/pistedatatallennin/src/sivut')
     print f.status
