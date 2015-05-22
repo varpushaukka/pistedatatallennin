@@ -1,4 +1,4 @@
-from bottle import route, run, static_file
+from bottle import route, run, static_file, redirect
 from os.path import realpath, dirname
 
 script_dir = dirname(realpath(__file__))
@@ -6,5 +6,8 @@ script_dir = dirname(realpath(__file__))
 @route('/sivut/<filepath>')
 def server_static(filepath):
     return static_file(filepath, root=script_dir + '/sivut')
+
+@route('/')
+def default_page(): redirect('sivut/index.html')
 
 run(host='0.0.0.0', port=8088, debug=True)
