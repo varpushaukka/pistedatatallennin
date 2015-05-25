@@ -14,3 +14,5 @@ body {
 }
 
 .box H1 { margin: 0 auto; }
+
+#kirj { float: right; } 
