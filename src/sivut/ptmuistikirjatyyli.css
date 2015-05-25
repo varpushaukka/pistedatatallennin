@@ -5,10 +5,11 @@ body {
 }
 
 .box { 
-      color: #6BB224
+      background-color: #6BB224
       max-width: 700pt; 
-      padding: 30pt;
+      padding: 20pt;
       border: solid 1px; 
-            
+      margin: 30pt auto;            
+
 }
 
