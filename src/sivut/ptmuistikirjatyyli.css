@@ -1,14 +1,14 @@
 
 body {
-      background-color: lightblue;
-      background-image: url("tausta.png")
+      background-color: #eef;
+      background-image: url("tausta.png");
 }
 
 .box { 
       background-color: #7c5;
       max-width: 600pt; 
       padding: 20pt;
-      border: solid 1px; 
+      border: solid #5b2 2px;
       margin: 30pt auto;            
 
 }
