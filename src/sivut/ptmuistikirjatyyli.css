@@ -1,13 +1,8 @@
 
 body {
-<<<<<<< HEAD
-      background-color: lightblue;
-      background-image: url("tausta.png")
-      font: sans-serif;
-=======
+      font: sans-serif #5b2;
       background-color: #eef;
       background-image: url("tausta.png");
->>>>>>> dbc99a0fea1cbb8a220aea12b21b10cd8b9f053c
 }
 
 .box { 
