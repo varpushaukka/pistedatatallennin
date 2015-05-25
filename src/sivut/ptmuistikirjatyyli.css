@@ -2,6 +2,7 @@
 body {
       background-color: lightblue;
       background-image: url("tausta.png")
+      font: sans-serif;
 }
 
 .box { 
