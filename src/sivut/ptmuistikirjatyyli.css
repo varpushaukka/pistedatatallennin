@@ -4,4 +4,11 @@ body {
       background-image: url("tausta.png")
 }
 
+.box { 
+      background-color: #6BB224
+      max-width: 700pt; 
+      padding: 20pt;
+      border: solid 1px; 
+            
+}
 
