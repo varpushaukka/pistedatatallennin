@@ -5,9 +5,9 @@ body {
 }
 
 .box { 
-      background-color: #6BB224
+      color: #6BB224
       max-width: 700pt; 
-      padding: 20pt;
+      padding: 30pt;
       border: solid 1px; 
             
 }
