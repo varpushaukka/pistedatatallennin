@@ -17,15 +17,22 @@ def server_static(filepath):
 @route('/')
 def default_page(): redirect('sivut/index.html')
 
-def sql(query):
+#apufunktio, jolla voi tehdä suoraan sql-lauseita
+def sql(query): 
    cur.execute(query)
    return cur.fetchall()
 
-def users():  #viikon 3 esimerkkifunktio
-   return [id for (id,) in sql("select id from kayttaja;")]
+def valitsekaikki(taulu):
+   return sql("select * from table (%s)", (taulu,))"
 
-# return [tup[0] for tup in sql...]
-print users()
+#viikon 3 esimerkkifunktio, joka hakee käyttäjätaulusta kaikki id:t ja palauttaa ne listana
+def kayttajat():  
+   return [id for (id,) in sql("select id from kayttaja;")]
+   # return [tup[0] for tup in sql...]
+
+print kayttajat()
+
+#viikon 3 toinen esimerkkifunktio
 
 run(host='0.0.0.0', port=8088, debug=True)
 
