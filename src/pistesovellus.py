@@ -23,20 +23,29 @@ def sql(query):
    cur.execute(query)
    return cur.fetchall()
 
+#esimerkkifunktio "all"
 def valitsekaikki(taulu):
    kysely = "select * from " + taulu
    return sql(kysely)
 
-print valitsekaikki("paikka")
+#print valitsekaikki("paikka")
 
-#viikon 3 esimerkkifunktio, joka hakee käyttäjätaulusta kaikki id:t ja palauttaa ne listana
+#esimerkkifunktio, joka hakee käyttäjätaulusta kaikki id:t ja palauttaa ne listana
 def kayttajat():  
    return [id for (id,) in sql("select id from kayttaja;")]
-   # return [tup[0] for tup in sql...]
 
-print kayttajat()
+#print kayttajat()
 
-#viikon 3 toinen esimerkkifunktio
+#esimerkkifunktio "find"
+def etsi(tunnus, taulu):
+   kysely = "select * from " + taulu + " where id =" + tunnus
+   return sql(kysely)
+
+#print etsi("1", "kayttaja")
+
+#esimerkkifunktio "save" tagi-taululle
+def talletatagi(tagi):
+   sql("insert into tagi (tagi) values (%s);", (tagi))
 
 run(host='0.0.0.0', port=8088, debug=True)
 
