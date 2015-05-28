@@ -1,3 +1,4 @@
+#coding: utf-8
 from bottle import route, run, static_file, redirect
 from os.path import realpath, dirname
 from psycopg2 import connect
@@ -23,7 +24,10 @@ def sql(query):
    return cur.fetchall()
 
 def valitsekaikki(taulu):
-   return sql("select * from table (%s)", (taulu,))"
+   kysely = "select * from " + taulu
+   return sql(kysely)
+
+print valitsekaikki("paikka")
 
 #viikon 3 esimerkkifunktio, joka hakee käyttäjätaulusta kaikki id:t ja palauttaa ne listana
 def kayttajat():  
