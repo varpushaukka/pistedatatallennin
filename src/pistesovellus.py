@@ -4,7 +4,7 @@ from psycopg2 import connect
 
 script_dir = dirname(realpath(__file__))
 
-cur = connect("dbname=pistedata").cursor()
+cur = connect("dbname=pistedata port=5433").cursor()
 
 "olen omena"
 
