@@ -43,9 +43,11 @@ def etsi(tunnus, taulu):
 
 #print etsi("1", "kayttaja")
 
-#esimerkkifunktio "save" tagi-taululle
-def talletatagi(tagi):
-   sql("insert into tagi (tagi) values (%s);", (tagi))
+#esimerkkifunktio "save" tagi-taululle HUOM ei toimi vielä, koska sql ottaa vain yhden argumentin TODO
+def talletatagi(paikka, tagi):
+   data = (paikka, tagi, )
+   return sql("insert into tagi (tagi) values (%s,%s);", data)
+
 
 run(host='0.0.0.0', port=8088, debug=True)
 
