@@ -46,7 +46,10 @@ class Model:
          self.bind_place_and_tag(placeid, self.id_for_tag(tag))
       self.commit()
    
-   def place_for_coord(self, co
+   def place_for_coord(self, coord):
+      tags = self.sql("select tagi.tagi from paikka, tagi, paikkatagi where paikka.id=paikkatagi.paikka and tagi.id=paikkatagi.tagi and koordinaatti <-> point(%s,%s) = 0", (coord[0], coord[1]))
+      return (coord, [tag for (tag,) in tags])
+
    #esimerkkifunktio "all"
    def selectall(self, taulu):
       kysely = "select * from " + taulu
