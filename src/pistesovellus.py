@@ -38,7 +38,7 @@ class Model:
       if result: return
       self.sql("insert into paikkatagi (paikka, tagi) values (%s,%s) returning 1", (placeid, tagid))
 
-   #funktio, joka määrittelee paikan tietorakenteen ja pitää huolen siitä, että kyseinen paikka löytyy tietokannasta
+   #funktio, joka pitää huolen siitä, että parametrina annettu paikka löytyy tietokannasta
    def save_into_database(self, place):
       coord, tags = place
       placeid = self.id_for_place(coord, 0)
@@ -46,9 +46,14 @@ class Model:
          self.bind_place_and_tag(placeid, self.id_for_tag(tag))
       self.commit()
    
+   #funktio, joka määrittelee paikan tietorakenteen
    def place_for_coord(self, coord):
       tags = self.sql("select tagi.tagi from paikka, tagi, paikkatagi where paikka.id=paikkatagi.paikka and tagi.id=paikkatagi.tagi and koordinaatti <-> point(%s,%s) = 0", (coord[0], coord[1]))
       return (coord, [tag for (tag,) in tags])
+
+   def list_all_coordinates(self):
+      coords = self.sql("select koordinaatti[0], koordinaatti[1] from paikka")
+      return coords
 
    #esimerkkifunktio "all"
    def selectall(self, taulu):
