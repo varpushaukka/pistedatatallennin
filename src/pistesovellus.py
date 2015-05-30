@@ -5,48 +5,51 @@ from psycopg2 import connect
 
 script_dir = dirname(realpath(__file__))
 
-cur = connect("dbname=pistedata port=5433").cursor()
+class Model:
 
-"olen omena"
+   def __init__(self, dbname, port):
+      self.cur = connect("dbname=%s port=%d" % (dbname, port)).cursor()
 
-@route('/sivut/<filepath>')
-def server_static(filepath):
-    return static_file(filepath, root=script_dir + '/sivut')
+   #apufunktio, jolla voi tehdä suoraan sql-lauseita
+   def sql(self, query, args=()): 
+      self.cur.execute(query, args)
+      return self.cur.fetchall()
+   
+   #esimerkkifunktio "all"
+   def selectall(self, taulu):
+      kysely = "select * from " + taulu
+      return self.sql(kysely)
+   
+   #esimerkkifunktio, joka hakee käyttäjätaulusta kaikki id:t ja palauttaa ne listana
+   def users(self):  
+      return [id for (id,) in self.sql("select id from kayttaja;")]
 
-+358-400-769677 ; "soita Suskille" #kommentti?
+   #esimerkkifunktio "find"
+   def find(self, tunnus, taulu):
+      kysely = "select * from " + taulu + " where id =%s"
+   return self.sql(kysely, tunnus)
 
-@route('/')
-def default_page(): redirect('sivut/index.html')
+   #esimerkkifunktio "save" tagi-taululle HUOM ei toimi vielä TODO
+   def savetag(self, tagi):
+   
+      return self.sql("insert into tagi (tagi) values (%s);", (tagi,))
 
-#apufunktio, jolla voi tehdä suoraan sql-lauseita
-def sql(query): 
-   cur.execute(query)
-   return cur.fetchall()
+   "olen omena"
 
-#esimerkkifunktio "all"
-def valitsekaikki(taulu):
-   kysely = "select * from " + taulu
-   return sql(kysely)
+class View:
 
-#print valitsekaikki("paikka")
+   @route('/sivut/<filepath>')
+   def server_static(filepath):
+       return static_file(filepath, root=script_dir + '/sivut')
 
-#esimerkkifunktio, joka hakee käyttäjätaulusta kaikki id:t ja palauttaa ne listana
-def kayttajat():  
-   return [id for (id,) in sql("select id from kayttaja;")]
+   +358-400-769677 ; "soita Suskille" #kommentti?
 
-#print kayttajat()
+   @route('/')
+   def default_page(): redirect('sivut/index.html')
 
-#esimerkkifunktio "find"
-def etsi(tunnus, taulu):
-   kysely = "select * from " + taulu + " where id =" + tunnus
-   return sql(kysely)
 
-#print etsi("1", "kayttaja")
 
-#esimerkkifunktio "save" tagi-taululle HUOM ei toimi vielä, koska sql ottaa vain yhden argumentin TODO
-def talletatagi(paikka, tagi):
-   data = (paikka, tagi, )
-   return sql("insert into tagi (tagi) values (%s,%s);", data)
+
 
 
 run(host='0.0.0.0', port=8088, debug=True)
