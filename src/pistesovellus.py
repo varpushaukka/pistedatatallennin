@@ -55,6 +55,9 @@ class Model:
       coords = self.sql("select koordinaatti[0], koordinaatti[1] from paikka")
       return coords
 
+   #seuraavat kolme funktiota ovat vain viikkopalautusta varten esimerkiksi. 
+   #Aiemmat funktiot ovat sovelluksen kannalta relevantteja.
+
    #esimerkkifunktio "all"
    def selectall(self, taulu):
       kysely = "select * from " + taulu
@@ -69,13 +72,6 @@ class Model:
       kysely = "select * from " + taulu + " where id =%s"
       return self.sql(kysely, tunnus)
 
-
-
-   #esimerkkifunktio "save" tagi-taululle HUOM ei toimi vielä oikein TODO
-   def savetag(self, tagi):
-      return self.sql("insert into tagi (tagi) values (%s);", (tagi,))
-
-   "olen omena"
 
 class Controller:
 
