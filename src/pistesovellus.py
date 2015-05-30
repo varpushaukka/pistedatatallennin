@@ -2,6 +2,7 @@
 from bottle import route, run, static_file, redirect
 from os.path import realpath, dirname
 from psycopg2 import connect
+from pisteconfig import port
 
 script_dir = dirname(realpath(__file__))
 
@@ -72,19 +73,20 @@ class Model:
       kysely = "select * from " + taulu + " where id =%s"
       return self.sql(kysely, tunnus)
 
+@route('/pages/<filepath>')
+def server_static(filepath):
+   return static_file(filepath, root=script_dir + '/sivut')
 
-class Controller:
++358-400-769677 ; "soita Suskille" #kommentti?
 
-   @route('/sivut/<filepath>')
-   def server_static(filepath):
-       return static_file(filepath, root=script_dir + '/sivut')
+@route('/')
+def default_page(): redirect('/pages/index.html')
 
-   +358-400-769677 ; "soita Suskille" #kommentti?
-
-   @route('/')
-   def default_page(): redirect('sivut/index.html')
+@route('/list')
+def list_coordinates():
+   return '<br>'.join(str(c) for c in m.list_all_coordinates())
 
 if __name__ == '__main__':
+   m = Model("pistedata", port)
    run(host='0.0.0.0', port=8088, debug=True)
 
-   
