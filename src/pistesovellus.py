@@ -20,12 +20,17 @@ class Model:
    def commit(self):
       self.conn.commit()
 
+   #seuraavissa funktioissa "pitää huolen" tarkoittaa sitä,
+   # että funktio tarkistaa onko haluttu tieto olemassa ja jos ei, se inserttaa halutun tiedon
+
+   #pitää huolen siitä, että parametrina annettu tagi löytyy tietokannasta
    def id_for_tag(self, tag):
       ids = self.sql("select id from tagi where tagi=%s", (tag,))
       if ids: return ids[0][0]
       ids = self.sql("insert into tagi (tagi) values (%s) returning id", (tag,))
       return ids[0][0]
 
+   #pitää huolen siitä, että parametrina annettu paikka löytyy tietokannasta
    def id_for_place(self, point, epsilon):
       ids = self.sql("select id from paikka where koordinaatti <-> point(%s,%s) <= %s",
           (point[0], point[1], epsilon))
@@ -34,12 +39,13 @@ class Model:
           (point[0], point[1]))
       return ids[0][0]
 
+   #pitää huolen siitä, että paikka ja tagi löytyvät paikkatagi-taulusta
    def bind_place_and_tag(self, placeid, tagid):
       result = self.sql("select 1 from paikkatagi where paikka=%s and tagi=%s", (placeid, tagid))
       if result: return
       self.sql("insert into paikkatagi (paikka, tagi) values (%s,%s) returning 1", (placeid, tagid))
 
-   #funktio, joka pitää huolen siitä, että parametrina annettu paikka löytyy tietokannasta
+   #pitää huolen siitä, että parametrina annettu paikka löytyy tietokannasta
    def save_into_database(self, place):
       coord, tags = place
       placeid = self.id_for_place(coord, 0)
@@ -73,6 +79,7 @@ class Model:
       kysely = "select * from " + taulu + " where id =%s"
       return self.sql(kysely, tunnus)
 
+#Controller
 @route('/pages/<filepath>')
 def server_static(filepath):
    return static_file(filepath, root=script_dir + '/sivut')
