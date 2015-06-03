@@ -62,29 +62,11 @@ class Model:
       coords = self.sql("select koordinaatti[0], koordinaatti[1] from paikka")
       return coords
 
-   #seuraavat kolme funktiota ovat vain viikkopalautusta varten esimerkiksi. 
-   #Aiemmat funktiot ovat sovelluksen kannalta relevantteja.
-
-   #esimerkkifunktio "all"
-   def selectall(self, taulu):
-      kysely = "select * from " + taulu
-      return self.sql(kysely)
-   
-   #esimerkkifunktio, joka hakee käyttäjätaulusta kaikki id:t ja palauttaa ne listana
-   def users(self):  
-      return [id for (id,) in self.sql("select id from kayttaja;")]
-
-   #esimerkkifunktio "find"
-   def find(self, tunnus, taulu):
-      kysely = "select * from " + taulu + " where id =%s"
-      return self.sql(kysely, tunnus)
 
 #Controller
 @route('/pages/<filepath>')
 def server_static(filepath):
    return static_file(filepath, root=script_dir + '/sivut')
-
-+358-400-769677 ; "soita Suskille" #kommentti?
 
 @route('/')
 def default_page(): redirect('/pages/index.html')
@@ -92,6 +74,10 @@ def default_page(): redirect('/pages/index.html')
 @route('/list')
 def list_coordinates():
    return '<br>'.join(str(c) for c in m.list_all_coordinates())
+
+@route('/list/<tag>')
+def search_tags(tag):
+
 
 if __name__ == '__main__':
    m = Model("pistedata", port)
