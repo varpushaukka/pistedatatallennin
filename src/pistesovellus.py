@@ -1,5 +1,5 @@
 #coding: utf-8
-from bottle import route, run, static_file, redirect
+from bottle import route, run, static_file, redirect, template, view
 from os.path import realpath, dirname
 from psycopg2 import connect
 from pisteconfig import port
@@ -59,11 +59,10 @@ class Model:
 		return (coord, [tag for (tag,) in tags])
 
 	def list_coordinates(self, startcoord, tag=None):
-		if tag: coords_by_tag = self.sql("""select koordinaatti[0], koordinaatti[1] 
+		if tag: return self.sql("""select koordinaatti[0], koordinaatti[1] 
 			from paikka, paikkatagi, tagi
 			where paikka.id=paikkatagi.paikka and tagi.id=paikkatagi.tagi and tagi.tagi=%s""", (tag,))
-		else: coords = self.sql("select koordinaatti[0], koordinaatti[1] from paikka")
-		return coords
+		else: return self.sql("select koordinaatti[0], koordinaatti[1] from paikka")
 
 #Controller
 @route('/pages/<filepath>')
@@ -75,11 +74,12 @@ def default_page(): redirect('/pages/index.html')
 
 @route('/list')
 def list_all_coordinates():
-	return '<br>'.join(str(c) for c in m.list_coordinates())
+	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
 
 @route('/list/<tag>')
+@view('list_template')
 def search_by_tag(tag):
-	m.list_coordinates((9043,9438), tag=tag)
+	return {'tag':tag, 'm':m}
 
 if __name__ == '__main__':
 	m = Model("pistedata", port)
