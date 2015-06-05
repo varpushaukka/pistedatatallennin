@@ -23,14 +23,14 @@ class Model:
 	#seuraavissa funktioissa "pitää huolen" tarkoittaa sitä,
 	# että funktio tarkistaa onko haluttu tieto olemassa ja jos ei, se inserttaa halutun tiedon
 
-	#pitää huolen siitä, että parametrina annettu tagi löytyy tietokannasta
+	#pitää huolen siitä, että parametrina annettu tagi löytyy tietokannasta, palauttaa id:n
 	def id_for_tag(self, tag):
 		ids = self.sql("select id from tagi where tagi=%s", (tag,))
 		if ids: return ids[0][0]
 		ids = self.sql("insert into tagi (tagi) values (%s) returning id", (tag,))
 		return ids[0][0]
 
-	#pitää huolen siitä, että parametrina annettu paikka löytyy tietokannasta
+	#pitää huolen siitä, että parametrina annettu paikka löytyy tietokannasta, palauttaa id:n
 	def id_for_place(self, point, epsilon):
 		ids = self.sql("select id from paikka where koordinaatti <-> point(%s,%s) <= %s",
 			 (point[0], point[1], epsilon))
@@ -39,13 +39,13 @@ class Model:
 			 (point[0], point[1]))
 		return ids[0][0]
 
-	#pitää huolen siitä, että paikka ja tagi löytyvät paikkatagi-taulusta (ei palauta mitään)
+	#tarkistaa lötyykö paikka ja tagi paikkatagi-taulusta ja lisää ne, jos ei löydy
 	def bind_place_and_tag(self, placeid, tagid):
 		result = self.sql("select 1 from paikkatagi where paikka=%s and tagi=%s", (placeid, tagid))
 		if result: return
 		self.sql("insert into paikkatagi (paikka, tagi) values (%s,%s) returning 1", (placeid, tagid))
 
-	#pitää huolen siitä, että parametrina annettu paikka löytyy tietokannasta
+	#tallettaa paikan tietokantaan, jos sitä ei sieltä jo löydy
 	def save_into_database(self, place):
 		coord, tags = place
 		placeid = self.id_for_place(coord, 0)
@@ -53,11 +53,12 @@ class Model:
 			self.bind_place_and_tag(placeid, self.id_for_tag(tag))
 		self.commit()
 	
-	#funktio, joka määrittelee paikan tietorakenteen
+	#määrittelee paikan tietorakenteen
 	def place_for_coord(self, coord):
 		tags = self.sql("select tagi.tagi from paikka, tagi, paikkatagi where paikka.id=paikkatagi.paikka and tagi.id=paikkatagi.tagi and koordinaatti <-> point(%s,%s) = 0", (coord[0], coord[1]))
 		return (coord, [tag for (tag,) in tags])
 
+	#listaa koordinaatit ja filtteröi ne tagin perusteella
 	def list_coordinates(self, startcoord, tag=None):
 		if tag: return self.sql("""select koordinaatti[0], koordinaatti[1] 
 			from paikka, paikkatagi, tagi
