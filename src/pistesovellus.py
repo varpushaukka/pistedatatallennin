@@ -73,6 +73,17 @@ def server_static(filepath):
 @route('/')
 def default_page(): redirect('/pages/index.html')
 
+@route('/pages/login')
+def login():
+    return '''
+		<link rel="stylesheet" type="text/css" href="ptmuistikirjatyyli.css">
+        <form action="/login" method="post">
+            käyttäjätunnus: <input name="username" type="text" />
+            salasana: <input name="password" type="password" />
+            <input value="Kirjaudu" type="submit" />
+        </form>
+    '''
+
 @route('/list')
 def list_all_coordinates():
 	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
