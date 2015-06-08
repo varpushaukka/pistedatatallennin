@@ -7,17 +7,19 @@
  <link rel="stylesheet" type="text/css" href="ptmuistikirjatyyli.css">
 </head>
 <body>
+
+<div class="box"> 
+<form method="post" action="/addplace">
 <h1>Lisää paikka</h1>
-
-<form method="post" action="/list">
 	<p>
-	<label for="piste"> Piste </label>
+	<label for="piste"> Piste  </label>
 		<input type="text" id="piste"> <br>
-	<label for="tagi"> Tagi </label>
+	<label for="tagi"> Tagit </label>
 		<input type="text" id="tagi"> <br>
-	<label for="kuvaus"> Kuvaus </label>
-		<input type="text" id="kuvaus"> <br> 
+		<p> Paikan kuvaus <br>
+		<textarea rows=5 cols=60 name="kuvaus"></textarea> <br> 
+	<input type=submit name="talleta_paikka" value="Tallenna">
 
-
+</div>
 </body>
 </html>

@@ -77,6 +77,9 @@ def default_page(): redirect('/pages/index.html')
 def list_all_coordinates():
 	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
 
+@route('/addplace')
+
+
 @route('/list/<tag>')
 @view('list_template')
 def search_by_tag(tag):
