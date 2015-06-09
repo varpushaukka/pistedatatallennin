@@ -1,5 +1,5 @@
 #coding: utf-8
-from bottle import route, run, static_file, redirect, template, view
+from bottle import route, run, static_file, redirect, template, view, post
 from os.path import realpath, dirname
 from psycopg2 import connect
 from pisteconfig import port
@@ -73,7 +73,7 @@ def server_static(filepath):
 @route('/')
 def default_page(): redirect('/pages/index.html')
 
-@route('/pages/login')
+@route('/login')
 def login():
     return '''
 		<link rel="stylesheet" type="text/css" href="ptmuistikirjatyyli.css">
@@ -87,6 +87,11 @@ def login():
 @route('/list')
 def list_all_coordinates():
 	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
+
+@post('search')
+def list_coords():
+	haku = request.forms.get('haku')
+	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438))) + haku
 
 @route('/addplace')
 
