@@ -1,7 +1,7 @@
 #coding: utf-8
-from bottle import route, run, static_file, redirect, template, view, post
+from bottle import route, run, static_file, redirect, template, view, post, request
 from os.path import realpath, dirname
-from psycopg2 import connect
+import psycopg2
 from pisteconfig import port
 
 script_dir = dirname(realpath(__file__))
@@ -9,8 +9,9 @@ script_dir = dirname(realpath(__file__))
 class Model:
 
 	def __init__(self, dbname, port):
-		self.conn = connect("dbname=%s port=%d" % (dbname, port))
+		self.conn = psycopg2.connect("dbname=%s port=%d" % (dbname, port))
 		self.cur = self.conn.cursor()
+		psycopg2.extensions.register_type(psycopg2.extensions.UNICODE, self.cur)
 
 	#apufunktio, jolla voi tehdä suoraan sql-lauseita
 	def sql(self, query, args=()): 
@@ -65,6 +66,9 @@ class Model:
 			where paikka.id=paikkatagi.paikka and tagi.id=paikkatagi.tagi and tagi.tagi=%s""", (tag,))
 		else: return self.sql("select koordinaatti[0], koordinaatti[1] from paikka")
 
+#	def check_login(username, password):
+#		usrname = name for (name,) in self.sql("""select tunnus from kayttaja
+
 #Controller
 @route('/pages/<filepath>')
 def server_static(filepath):
@@ -76,24 +80,34 @@ def default_page(): redirect('/pages/index.html')
 @route('/login')
 def login():
     return '''
-		<link rel="stylesheet" type="text/css" href="ptmuistikirjatyyli.css">
-        <form action="/login" method="post">
+		  <form action="login" method="post">
             käyttäjätunnus: <input name="username" type="text" />
             salasana: <input name="password" type="password" />
             <input value="Kirjaudu" type="submit" />
         </form>
     '''
 
+@route('/login', method='POST')
+def do_login():
+    username = request.forms.get('username')
+    password = request.forms.get('password')
+    if check_login(username, password):
+        return "<p>Kirjautuminen onnistui.</p>"
+    else:
+        return "<p>Kirjautuminen epäonnistui.</p>"
+
 @route('/list')
 def list_all_coordinates():
 	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
 
-@post('search')
+@route('/search', method='POST')
 def list_coords():
-	haku = request.forms.get('haku')
-	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438))) + haku
+	haku = request.forms.haku
+	print haku, type(haku)
+	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
 
-@route('/addplace')
+@route('/addplace', method='POST')
+
 
 
 @route('/list/<tag>')

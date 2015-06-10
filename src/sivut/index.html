@@ -8,14 +8,16 @@
 </head>
 <body>
 <div class="box">
-<a id="kirj"    href="/login"> kirjaudu </a>
+<a id="kirj"    href="login"> kirjaudu </a>
 <h1>Paikkatietomuistikirja</h1>
 
 <h2>Tervetuloa paikkatietomuistikirjaan</h2>
-<form method="post" action="search">
+<form method="post" action="/search">
 	<p>
 	<label for="haku"> Haku </label>
-		<input type="text" id="haku"> 
+		<input type="text" name="haku"> 
+	<input type=submit value="Hae">
+</form>
 <p> <a href="paikka.html"> lisää paikka </a>
 
 
