@@ -107,7 +107,12 @@ def list_coords():
 	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
 
 @route('/addplace', method='POST')
-
+def addplace():
+	point = tuple(float(n) for n in request.forms.piste.split(","))
+	tag = request.forms.tagi
+	place = (point, [tag])
+	m.save_into_database(place)
+	return '<br>' + str(m.place_for_coord(point))
 
 
 @route('/list/<tag>')
