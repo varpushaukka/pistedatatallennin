@@ -108,7 +108,8 @@ def list_coords():
 
 @route('/addplace', method='POST')
 def addplace():
-	point = tuple(float(n) for n in request.forms.piste.split(","))
+	pieces = request.forms.piste.split(",")
+	point = tuple(float(n) for n in pieces)
 	tag = request.forms.tagi
 	place = (point, [tag])
 	m.save_into_database(place)
