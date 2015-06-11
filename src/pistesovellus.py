@@ -66,8 +66,14 @@ class Model:
 			where paikka.id=paikkatagi.paikka and tagi.id=paikkatagi.tagi and tagi.tagi=%s""", (tag,))
 		else: return self.sql("select koordinaatti[0], koordinaatti[1] from paikka")
 
-#	def check_login(username, password):
-#		usrname = name for (name,) in self.sql("""select tunnus from kayttaja
+	def check_login(self, username, password):
+		usrnames = self.sql("""select tunnus from kayttaja;""")
+		if (username,) in usrnames: 
+			pw = self.sql("""select salasana from kayttaja 
+			where kayttaja.tunnus=%s""", (username,))
+		else: return False
+		if (password,) in pw: return True
+		return False
 
 #Controller
 @route('/pages/<filepath>')
@@ -77,21 +83,12 @@ def server_static(filepath):
 @route('/')
 def default_page(): redirect('/pages/index.html')
 
-@route('/login')
-def login():
-    return '''
-		  <form action="login" method="post">
-            käyttäjätunnus: <input name="username" type="text" />
-            salasana: <input name="password" type="password" />
-            <input value="Kirjaudu" type="submit" />
-        </form>
-    '''
 
 @route('/login', method='POST')
 def do_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
-    if check_login(username, password):
+    if m.check_login(username, password):
         return "<p>Kirjautuminen onnistui.</p>"
     else:
         return "<p>Kirjautuminen epäonnistui.</p>"
