@@ -1,6 +1,5 @@
 #coding: utf-8
 from bottle import route, run, static_file, redirect, template, view, post, request, app as webapp
-
 from os.path import realpath, dirname
 import psycopg2
 from pisteconfig import port
@@ -96,19 +95,22 @@ app = SessionMiddleware(webapp(), {
 @route('/test')
 def test():
 	s = request.environ.get('beaker.session')
-	s['test'] = s.get('test',0) + 1
-	s.save()
-	return 'Test counter: %d' % s['test']
-
+	if 'loggedin' in s:
+		return 'kirjautuneena: %s' % s['loggedin']
+	else: return 'eiooeioo'
 
 @route('/login', method='POST')
 def do_login():
-    username = request.forms.get('username')
-    password = request.forms.get('password')
-    if m.check_login(username, password):
-        return "<p>Kirjautuminen onnistui.</p>"
-    else:
-        return "<p>Kirjautuminen epäonnistui.</p>"
+	s = request.environ.get('beaker.session')
+	username = request.forms.username
+	password = request.forms.password
+	if m.check_login(username, password):
+		s['loggedin'] = username
+		s.save()
+		redirect('/')
+	else:
+		del s['loggedin']
+		return "<p>Kirjautuminen epäonnistui.</p>"
 
 @route('/list')
 def list_all_coordinates():
