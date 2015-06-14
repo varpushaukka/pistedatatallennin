@@ -1,8 +1,10 @@
 #coding: utf-8
-from bottle import route, run, static_file, redirect, template, view, post, request
+from bottle import route, run, static_file, redirect, template, view, post, request, app as webapp
+
 from os.path import realpath, dirname
 import psycopg2
 from pisteconfig import port
+from beaker.middleware import SessionMiddleware
 
 script_dir = dirname(realpath(__file__))
 
@@ -66,6 +68,7 @@ class Model:
 			where paikka.id=paikkatagi.paikka and tagi.id=paikkatagi.tagi and tagi.tagi=%s""", (tag,))
 		else: return self.sql("select koordinaatti[0], koordinaatti[1] from paikka")
 
+	#tarkistaa löytyykö kyseinen tunnus-salasana-yhdistelmä tietokannasta
 	def check_login(self, username, password):
 		usrnames = self.sql("""select tunnus from kayttaja;""")
 		if (username,) in usrnames: 
@@ -82,6 +85,20 @@ def server_static(filepath):
 
 @route('/')
 def default_page(): redirect('/pages/index.html')
+
+app = SessionMiddleware(webapp(), {
+	'session.type': 'file',
+	'session.cookie_expires': 300,
+	'session.data_dir': './data',
+	'session.auto': True
+})
+
+@route('/test')
+def test():
+	s = request.environ.get('beaker.session')
+	s['test'] = s.get('test',0) + 1
+	s.save()
+	return 'Test counter: %d' % s['test']
 
 
 @route('/login', method='POST')
@@ -120,5 +137,5 @@ def search_by_tag(tag):
 
 if __name__ == '__main__':
 	m = Model("pistedata", port)
-	run(host='0.0.0.0', port=8088, debug=True)
+	run(host='0.0.0.0', port=8088, debug=True, app=app)
 
