@@ -78,6 +78,16 @@ class Model:
 		return False
 
 #Controller
+
+def require_auth(handler):
+	def new_handler(*args):
+		s = request.environ.get('beaker.session')
+		if 'loggedin' in s:
+			return handler(*args)
+		else:
+			redirect('/pages/kirjaudu.html')
+	return new_handler
+
 @route('/pages/<filepath>')
 def server_static(filepath):
 	return static_file(filepath, root=script_dir + '/sivut')
@@ -121,6 +131,12 @@ def list_coords():
 	haku = request.forms.haku
 	print haku, type(haku)
 	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
+
+@route('/place')
+@require_auth
+def placething():
+	return static_file('paikka.html', root=script_dir + '/sivut')
+
 
 @route('/addplace', method='POST')
 def addplace():

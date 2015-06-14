@@ -7,6 +7,7 @@ Sovellus on toteutettu Pythonilla ja PostgreSQL:lla
 
 [Sovellus] (http://oiva.sange.fi:8088/)
 kirjaudu: kt: test ss: test123
+
 tarkista sessio: http://oiva.sange.fi:8088/test
 
 [Listaussivu] (http://oiva.sange.fi:8088/list)
