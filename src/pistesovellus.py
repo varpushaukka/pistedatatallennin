@@ -107,7 +107,7 @@ def test():
 	s = request.environ.get('beaker.session')
 	if 'loggedin' in s:
 		return 'kirjautuneena: %s' % s['loggedin']
-	else: return 'eiooeioo'
+	else: return 'ei sisäänkirjautunutta'
 
 @route('/login', method='POST')
 def do_login():
@@ -119,7 +119,7 @@ def do_login():
 		s.save()
 		redirect('/')
 	else:
-		del s['loggedin']
+		if 'loggedin' in s: del s['loggedin']
 		return "<p>Kirjautuminen epäonnistui.</p>"
 
 @route('/list')

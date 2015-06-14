@@ -120,6 +120,13 @@ paikka ja tagi viittaavat paikka ja tagi -taulujen id-kohtiin.
 
 ![tietokantakaavio] (tietokantakaavio.png)
 
+## Järjestelmän yleisrakenne
+
+Sovellus noudattaa MVC-mallia. pistesovellus.py -tiedostosta löytyy Model-luokka, josta löytyy kaikki tietokantaa käsittelevät funktiot. Tiedoston lopussa on peräkkäin kaikki kontrollerifunktiot. Näkymät löytyvät taas src/sivut -hakemiston alta.
+
+Järjestelmän riippuvuuksista pitää huolta Makefile, jolloin sovellusta on syytä ajaa komennolla $make run
+
+
 
 
 
