@@ -1,5 +1,8 @@
-run:
+run: bottle.py import-schema
 	python pistesovellus.py
+
+bottle.py:
+	wget http://bottlepy.org/bottle.py
 
 import-schema:
 	psql pistedata < create_tables.sql
