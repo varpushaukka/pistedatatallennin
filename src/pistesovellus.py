@@ -93,7 +93,10 @@ def server_static(filepath):
 	return static_file(filepath, root=script_dir + '/sivut')
 
 @route('/')
-def default_page(): redirect('/pages/index.html')
+@view('templates/index_template')
+def default_page():
+	s = request.environ.get('beaker.session')
+	return {'session':s}
 
 app = SessionMiddleware(webapp(), {
 	'session.type': 'file',
@@ -122,6 +125,12 @@ def do_login():
 		if 'loggedin' in s: del s['loggedin']
 		return "<p>Kirjautuminen epäonnistui.</p>"
 
+@route('/logout')
+def logout():
+	s = request.environ.get('beaker.session')
+	del s['loggedin']	
+	redirect('/')
+
 @route('/list')
 def list_all_coordinates():
 	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
@@ -148,8 +157,9 @@ def addplace():
 	return '<br>' + str(m.place_for_coord(point))
 
 
+
 @route('/list/<tag>')
-@view('list_template')
+@view('templates/list_template')
 def search_by_tag(tag):
 	return {'tag':tag, 'm':m}
 
