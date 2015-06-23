@@ -29,6 +29,7 @@ class Model:
 	def id_for_tag(self, tag):
 		ids = self.sql("select id from tagi where tagi=%s", (tag,))
 		if ids: return ids[0][0]
+		print "insert into tagi (tagi) values(" + tag + ") returning id"
 		ids = self.sql("insert into tagi (tagi) values (%s) returning id", (tag,))
 		return ids[0][0]
 
@@ -155,8 +156,6 @@ def addplace():
 	place = (point, [tag])
 	m.save_into_database(place)
 	return '<br>' + str(m.place_for_coord(point))
-
-
 
 @route('/list/<tag>')
 @view('templates/list_template')
