@@ -79,6 +79,7 @@ class Model:
 
 #Controller
 
+#funktio, jonka ottaa parametrinaan sivunkäsittelyfunktion, ja joka palauttaa uuden handler-funktion
 def require_auth(handler):
 	def new_handler(*args):
 		s = request.environ.get('beaker.session')
@@ -88,10 +89,12 @@ def require_auth(handler):
 			redirect('/pages/kirjaudu.html')
 	return new_handler
 
+#staattisille sivuille kätevä tiedostopolku
 @route('/pages/<filepath>')
 def server_static(filepath):
 	return static_file(filepath, root=script_dir + '/sivut')
 
+#etusivu
 @route('/')
 @view('templates/index_template')
 def default_page():
@@ -112,6 +115,7 @@ def test():
 		return 'kirjautuneena: %s' % s['loggedin']
 	else: return 'ei sisäänkirjautunutta'
 
+#loginsivu
 @route('/login', method='POST')
 def do_login():
 	s = request.environ.get('beaker.session')
@@ -131,6 +135,7 @@ def logout():
 	del s['loggedin']	
 	redirect('/')
 
+#sivu, joka listaa kaikki koordinaatit
 @route('/list')
 def list_all_coordinates():
 	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
@@ -141,12 +146,13 @@ def list_coords():
 	print haku, type(haku)
 	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
 
+#paikanlisäyssivu
 @route('/place')
 @require_auth
 def placething():
 	return static_file('paikka.html', root=script_dir + '/sivut')
 
-
+#paikanlisäysformin post-funktio
 @route('/addplace', method='POST')
 def addplace():
 	pieces = request.forms.piste.split(",")
