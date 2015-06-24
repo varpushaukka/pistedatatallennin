@@ -131,17 +131,24 @@ Järjestelmän riippuvuuksista pitää huolta Makefile, jolloin sovellusta on sy
 Sovellus voidaan pystyttää kloonaamalla pistedatatallennin-repo githubista ja sen jälkeen hyödyntämällä Makefilea. Riippuudet ja käynnistys tehdään Makefilen avulla. Makefilessa on melkein kaikki tarvittavat riippuvuudet sovelluksen toiminnan kannalta. Sovellusta pyörittävässä koneessa on lisäksi oltava asennettuna Python ja Pythonin sessiohallintalisäosa python-beaker. 
 
 Sovellus käynnistetään komentoriviltä komennolla:
-				$ make run
-joka lataa bottle-kirjaston suoritettavaan hakemistoon ja luo tietokannan taulut, jos niitä ei ole luotu jo. Jos halutaan tietokantaan testidataa, annetaan komentoriviltä komento:
-				$ make import-data
-ja jos halutaan tyhjentää koko tietokanta datasta ja tauluista, se tehdään helpoiten komennolla:
-				$ make clean-database
 
- ## käyttöohje
+					$ make run
+
+joka lataa bottle-kirjaston suoritettavaan hakemistoon ja luo tietokannan taulut, jos niitä ei ole luotu jo. Jos halutaan tietokantaan testidataa, annetaan komentoriviltä komento:
+
+					$ make import-data
+
+ja jos halutaan tyhjentää koko tietokanta datasta ja tauluista, se tehdään helpoiten komennolla:
+
+					$ make clean-database
+
+## Käyttöohje
 
 Sovellusta voi tällä hetkellä testata kirjautumalla sisään näillä tiedoilla: 
-			käyttäjätunnus: test 
-			salasana: test123
+
+				käyttäjätunnus: test 
+				salasana: test123
+
 Ilman kirjautumista sovelluksessa voi käyttää hakutoimintoa, joka listaa paikkoja.
 Kirjautumisen jälkeen sovellus uudelleenohjaa käyttäjän etusivulle, josta käyttäjä voi hakea paikkoja, tai valita lisäävänsä uuden paikan. Jos kirjautumaton käyttäjä yrittää lisätä uuden paikan, sovellus ohjaa käyttäjän kirjautumaan sisään.
 
