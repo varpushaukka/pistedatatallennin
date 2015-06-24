@@ -29,7 +29,6 @@ class Model:
 	def id_for_tag(self, tag):
 		ids = self.sql("select id from tagi where tagi=%s", (tag,))
 		if ids: return ids[0][0]
-		print "insert into tagi (tagi) values(" + tag + ") returning id"
 		ids = self.sql("insert into tagi (tagi) values (%s) returning id", (tag,))
 		return ids[0][0]
 
