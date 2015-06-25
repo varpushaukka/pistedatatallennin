@@ -164,13 +164,14 @@ Kirjautumisen jälkeen sovellus uudelleenohjaa käyttäjän etusivulle, josta k�
 
 ## TODO
 
-- kuvausten lisääminen tietokantaan
+- kuvausten lisääminen tietokantaan ja niiden näyttäminen hakusivulla
+- paikkojen mergeäminen
 
 - käyttäjän merkitseminen paikkojensa omistajaksi
 - omien paikkojen tarkastelusivu "mypage.tpl"
 
 - koordinaattien sijoittaminen googlemapsiin
-
+- syötteiden validointi
 
 
 
