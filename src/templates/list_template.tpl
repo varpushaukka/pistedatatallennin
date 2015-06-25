@@ -11,7 +11,7 @@
 <h1> Paikkatietomuistikirja </h1>
 <a href="/"> palaa etusivulle </a>
 % for place in m.list_coordinates((9583,8374), tag=tag):
-<br> {{ str(place) }}
+<br> {{ str(m.place_for_coord(place)) }}
 % end
 
 
