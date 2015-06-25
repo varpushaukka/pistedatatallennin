@@ -162,6 +162,14 @@ Sovellusta voi tällä hetkellä testata kirjautumalla sisään näillä tiedoil
 Ilman kirjautumista sovelluksessa voi käyttää hakutoimintoa, joka listaa paikkoja.
 Kirjautumisen jälkeen sovellus uudelleenohjaa käyttäjän etusivulle, josta käyttäjä voi hakea paikkoja, tai valita lisäävänsä uuden paikan. Jos kirjautumaton käyttäjä yrittää lisätä uuden paikan, sovellus ohjaa käyttäjän kirjautumaan sisään.
 
+## TODO
+
+- kuvausten lisääminen tietokantaan
+
+- käyttäjän merkitseminen paikkojensa omistajaksi
+- omien paikkojen tarkastelusivu "mypage.tpl"
+
+- koordinaattien sijoittaminen googlemapsiin
 
 
 
