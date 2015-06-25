@@ -161,7 +161,7 @@ def addplace():
 	tag = request.forms.tagi
 	place = (point, [tag])
 	m.save_into_database(place)
-	return '<br>' + str(m.place_for_coord(point))
+	redirect('/list/point')
 
 @route('/list/<tag>')
 @view('templates/list_template')

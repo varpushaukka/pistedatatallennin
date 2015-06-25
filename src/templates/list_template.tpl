@@ -8,7 +8,8 @@
 </head>
 <body>
 <div class="box">
-
+<h1> Paikkatietomuistikirja </h1>
+<a href="/"> palaa etusivulle </a>
 % for place in m.list_coordinates((9583,8374), tag=tag):
 <br> {{ str(place) }}
 % end
