@@ -162,6 +162,14 @@ Sovellusta voi tällä hetkellä testata kirjautumalla sisään näillä tiedoil
 Ilman kirjautumista sovelluksessa voi käyttää hakutoimintoa, joka listaa paikkoja.
 Kirjautumisen jälkeen sovellus uudelleenohjaa käyttäjän etusivulle, josta käyttäjä voi hakea paikkoja, tai valita lisäävänsä uuden paikan. Jos kirjautumaton käyttäjä yrittää lisätä uuden paikan, sovellus ohjaa käyttäjän kirjautumaan sisään.
 
+## Omat kokemukset
+
+Halusin tehdä sovelluksen Pythonilla, koska halusin enemmän käytännöllistä koodauskokemusta Pythonista. Valitsin ensin kehitysympäristökseni Bottlen, joka antoi yksinkertaiset puitteet. Bottle on hyvin minimalistinen ja sen päälle oli suhteellisen helppoa rakentaa sovellusta. Webdevaus oli minulle silti aivan uutta ja jouduin opettelemaan paljon uusia asioita. Luin mielettömät määrät dokumentaatiota, joista ainakin osan tallensin [tälle sivulle] (hyödyllisiälinkkeja.md)
+
+Javascript on minulle aivan tuntematon, mutta onneksi w3.orgista löytyi selkeä määrittely geopositioningia varten.
+
+Pääsin myös tutustumaan Google developers Console -työkaluihin.
+
 ## TODO
 
 - kuvausten lisääminen tietokantaan ja niiden näyttäminen hakusivulla
