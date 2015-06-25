@@ -140,11 +140,12 @@ def logout():
 def list_all_coordinates():
 	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
 
+#hakusivu tagin perusteella
 @route('/search', method='POST')
-def list_coords():
-	haku = request.forms.haku
-	print haku, type(haku)
-	return '<br>'.join(str(c) for c in m.list_coordinates((9043,9438)))
+@view('templates/list_template')
+def search_by_tag():
+	tag = request.forms.haku
+	return {'tag':tag, 'm':m}
 
 #paikanlisäyssivu
 @route('/place')

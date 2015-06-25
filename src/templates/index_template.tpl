@@ -17,7 +17,6 @@
 
 <h1>Paikkatietomuistikirja</h1>
 
-<h2>Tervetuloa paikkatietomuistikirjaan</h2>
 <form method="post" action="/search">
 	<p>
 	<label for="haku"> Haku </label>
@@ -27,8 +26,6 @@
 <p> <a href="/place"> lisää paikka </a>
 
 
-
-<p>tämä on etusivu
 </div>
 
 </body>
