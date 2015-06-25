@@ -126,9 +126,19 @@ Sovellus noudattaa MVC-mallia. pistesovellus.py -tiedostosta löytyy Model-luokk
 
 Järjestelmän riippuvuuksista pitää huolta Makefile, jolloin sovellusta on syytä ajaa komennolla $make run
 
+## Käyttöliittymä ja järjestelmän komponentit
+
+![käyttöliittymäkaavio] (käyttöliittymä.png)
+
 ## Asennustiedot
 
 Sovellus voidaan pystyttää kloonaamalla pistedatatallennin-repo githubista ja sen jälkeen hyödyntämällä Makefilea. Riippuudet ja käynnistys tehdään Makefilen avulla. Makefilessa on melkein kaikki tarvittavat riippuvuudet sovelluksen toiminnan kannalta. Sovellusta pyörittävässä koneessa on lisäksi oltava asennettuna Python ja Pythonin sessiohallintalisäosa python-beaker. 
+
+Eri palvelimissa postgresql-portti on eri paikassa, joten ennen sovelluksen käynnistämistä pitäisi suoritettavassa hakemistossa olla config-tiedosto "pisteconfig.py", jonka sisältö on: 
+
+					port=5432
+
+5432 on oletusportti
 
 Sovellus käynnistetään komentoriviltä komennolla:
 
