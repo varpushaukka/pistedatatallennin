@@ -9,15 +9,18 @@
 <body>
 <div class="box">
 
-{{'<br>'.join(str(c) for c in m.list_coordinates((9043,9438), tag=tag))}}
+% for place in m.list_coordinates((9583,8374), tag=tag):
+<br> {{ str(place) }}
+% end
+
 
 <br>
 <iframe
   width="450"
   height="250"
   frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCF7pHbZ2VY2Pyo0E1iCNtSHDTwZEkNXQU
-  &q=helsinki" allowfullscreen>
+  src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCF7pHbZ2VY2Pyo0E1iCNtSHDTwZEkNXQU
+  &center=60.1732816, 24.9523583" allowfullscreen>
 </iframe>
 
 
