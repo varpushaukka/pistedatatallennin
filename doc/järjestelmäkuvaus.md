@@ -164,7 +164,7 @@ Kirjautumisen jälkeen sovellus uudelleenohjaa käyttäjän etusivulle, josta k�
 
 ## Omat kokemukset
 
-Halusin tehdä sovelluksen Pythonilla, koska halusin enemmän käytännöllistä koodauskokemusta Pythonista. Valitsin ensin kehitysympäristökseni Bottlen, joka antoi yksinkertaiset puitteet. Bottle on hyvin minimalistinen ja sen päälle oli suhteellisen helppoa rakentaa sovellusta. Webdevaus oli minulle silti aivan uutta ja jouduin opettelemaan paljon uusia asioita. Luin mielettömät määrät dokumentaatiota, joista ainakin osan tallensin [tälle sivulle] (linkkeja.md)
+Halusin tehdä sovelluksen Pythonilla, koska halusin enemmän käytännöllistä koodauskokemusta Pythonista. Valitsin ensin kehitysympäristökseni Bottlen, joka antoi yksinkertaiset puitteet. Bottle on hyvin minimalistinen ja sen päälle oli suhteellisen helppoa rakentaa sovellusta. Webdevaus oli minulle silti aivan uutta ja jouduin opettelemaan paljon uusia asioita. Luin mielettömät määrät dokumentaatiota, joista ainakin osan tallensin [tälle sivulle] (linkkejä.md)
 
 Javascript on minulle aivan tuntematon, mutta onneksi w3.orgista löytyi selkeä määrittely geopositioningia varten.
 
